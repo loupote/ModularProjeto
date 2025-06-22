@@ -1,5 +1,5 @@
-from gera_relat_utils import *
-from gera_comp_utils import *
+from gera_relatorio_utils import *
+from gera_comparativo_utils import *
 
 
 def gerar_relatorio_financeiro(lancamentos, periodo, console=False):
@@ -185,7 +185,7 @@ def gerar_comparativo(lancamentos, ano1, ano2, console = False):
     diferenca_despesas = relatorioano2["despesas"]["total"] - relatorioano1["despesas"]["total"]
     diferenca_saldoFinal = relatorioano2["saldoFinal"] - relatorioano1["saldoFinal"]
 
-    gastos_por_categoria, cat_mais_gastos = maior_categoria(relatorioano1, relatorioano2)
+    gastos_por_categoria, cat_mais_gastos = categoria_maior_dif_despesa(relatorioano1, relatorioano2)
 
     resumo = (
     f"Em {ano2}, as receitas variaram em {round(diferenca_receitas, 2)}, "
