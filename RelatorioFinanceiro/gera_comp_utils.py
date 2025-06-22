@@ -1,5 +1,5 @@
 
-def maiorCategoria(relatorioano1, relatorioano2):
+def maior_categoria(relatorioano1, relatorioano2):
     categorias = set(relatorioano1["despesas"].keys()).union(set(relatorioano2["despesas"].keys()))
     categorias.discard("total")
 

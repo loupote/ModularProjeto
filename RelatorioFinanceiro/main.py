@@ -1,4 +1,6 @@
 from main_func import *
+from gera_dados import *
+
 
 if __name__ == "__main__":
     periodo = {
@@ -6,6 +8,8 @@ if __name__ == "__main__":
         "data_final": datetime(2023, 1, 1)
     }
 
-    gerarRelatorioFinanceiro(periodo, True)
+    meus_lancamentos = gerar_lancamentos()
 
-    gerarComparativo(2022, 2024, True)
+    gerar_relatorio_financeiro(meus_lancamentos, periodo, True)
+
+    gerar_comparativo(meus_lancamentos, 2022, 2024, True)

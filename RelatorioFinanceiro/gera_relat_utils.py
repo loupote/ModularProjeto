@@ -3,45 +3,14 @@ from pprint import pprint #Pata um pretty print no console
 
 import matplotlib.pyplot as plt #Para a geracao de diagrama circular
 
-import random
-
-
-categorias = ['Moradia', 'Alimentação', 'Transporte', 'Saúde', 'Educação', 'Lazer', 'Guardar', 'Salario', 'Outros']
-tipos = ['receita', 'despesa']
-
-lancamentos = []
-
-for _ in range(30):
-    ano = random.randint(2020, 2024)
-    mes = random.randint(1, 12)
-    dia = random.randint(1, 28)  # para evitar erros com dias inválidos
-    tipo = random.choice(tipos)
-    
-    # Para receita, valores maiores; para despesa, valores menores (apenas sugestão)
-    if tipo == 'receita':
-        valor = round(random.uniform(1000, 5000), 2)
-    else:
-        valor = round(random.uniform(10, 500), 2)
-    
-    categoria = random.choice(categorias)
-    descricao = f"Lançamento {tipo} - {categoria}"
-    
-    lancamento = {
-        "descricao": descricao,
-        "valor": valor,
-        "data": datetime(ano, mes, dia),
-        "tipo": tipo,
-        "categoria": categoria
-    }
-    
-    lancamentos.append(lancamento)
+from gera_dados import tipos, categorias
 
 
 
-def calcularSaldoAntes(data_inicio):
+def calcular_saldo_antes(lancamentos, data_inicio):
     saldo = 0.0
     for l in lancamentos:
-        if validarLancamento(l) and l["data"] < data_inicio:
+        if validar_lancamento(l) and l["data"] < data_inicio:
             if l["tipo"] == "receita":
                 saldo += l["valor"]
             elif l["tipo"] == "despesa":
@@ -49,7 +18,7 @@ def calcularSaldoAntes(data_inicio):
     return saldo
 
 
-def validarLancamento(lancamento):
+def validar_lancamento(lancamento):
     return (
         lancamento.get("tipo") in tipos and
         lancamento.get("categoria") in categorias and
@@ -58,7 +27,7 @@ def validarLancamento(lancamento):
     )
 
 
-def agruparPorCategoria(lancs, tipo):
+def agrupar_por_categoria(lancs, tipo):
     categorias = {}
     total = 0.0
     for l in lancs:
@@ -69,7 +38,7 @@ def agruparPorCategoria(lancs, tipo):
     return categorias, total
 
 
-def gerarGraficoPizzaDespesas(relatorio):
+def gerar_grafico_pizza_despesas(relatorio):
     despesas = relatorio["despesas"]
     categorias = [k for k in despesas if k != "total"]
     valores = [despesas[k] for k in categorias]
