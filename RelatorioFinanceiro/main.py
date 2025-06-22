@@ -1,4 +1,4 @@
-from main_func import *
+from Projeto.RelatorioFinanceiro.gera_utils import *
 from gera_dados import *
 
 
